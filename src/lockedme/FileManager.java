@@ -13,16 +13,22 @@ public class FileManager {
 	public static void listFilesinFolder(File folder) {
 		File[] files = folder.listFiles();
 		
-		for(File file : files) {
-			if(file.isDirectory()) {
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				System.out.println("Inside "+file.getName());
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				listFilesinFolder(file);
-				System.out.println("---------------------------");
+		if(folder.exists()) {
+			if(files != null && files.length > 0) {
+				for(File file : files) {
+					if(file.isDirectory()) {
+						System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+						System.out.println("Inside "+file.getName());
+						System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+						listFilesinFolder(file);
+						System.out.println("---------------------------");
+					}
+					else if(file.isFile())
+						System.out.println(file.getName());
+				}
 			}
-			else if(file.isFile())
-				System.out.println(file.getName());
+		} else {
+			System.out.println("Invalid folder path...Please check!");
 		}
 	}
 	
@@ -78,26 +84,36 @@ public class FileManager {
 	 * @param folder
 	 * @param filename
 	 */
-	public static boolean searchFileinFolder(File folder, String filename) {
-		boolean fileIsFound = false;
+	public static int searchFileinFolder(File folder, String filename) {
+		int fileIsFound = 2;
 		File[] files = folder.listFiles();
+		
+		if(!folder.exists()) {
+			return 0;
+		}
+		
+		if((files== null)) {
+			return 2;
+		}
+		
+		else {
 		for(File file : files) {
-			
 			if(file.isDirectory()) {
 				fileIsFound = searchFileinFolder(file,filename);
-				if(fileIsFound)
-					return true;
+				if(fileIsFound == 3)
+					return 3;
 			}
 			
 			else if(file.isFile() && file.getName().equals(filename)) {
 				System.out.println("File found at the path: "+file.getAbsolutePath());
-				return true;
+				return 3;
 			}
 			
 		}
-		if(fileIsFound)
-			return true;
+		if(fileIsFound == 3)
+			return 3;
 		else
-			return false;	
+			return 2;	
+	}
 	}
 }
