@@ -55,13 +55,14 @@ public class FileMenu {
 		System.out.println("There is an exception :"+e);
 	}
 }
-	
+	// This method displays the files in the current directory and sub-directory
 	public static void displayFilesinFolder() {
 		System.out.println("\nDisplaying the files in the folder "+FileMenu.PATH+"...\n");
 		File folder = new File(FileMenu.PATH);
 		FileManager.listFilesinFolder(folder);
 	}
 	
+	// This method is used to create a file in the folder 
 	public static void createFileinFolder() {
 		System.out.println("CREATING A FILE...");
 		System.out.println("Enter the path where the file needs to be created....\r\n");
@@ -79,8 +80,10 @@ public class FileMenu {
 		FileManager.createFileinFolder(folder,filename+".txt",content);
 	}
 	
+	// This method deletes the file from the specified folder
     public static void deleteFilefromFolder() {
-    	System.out.println("Enter the path where the file needs to be created....\r\n");
+    	System.out.println("DELETE A FILE FROM THE FOLDER...");
+    	System.out.println("Enter the path where the file needs to be deleted....\r\n");
 		String userPath = INPUT.nextLine();
 		
 		if(userPath == null)
@@ -93,8 +96,10 @@ public class FileMenu {
 		FileManager.deleteFilefromFolder(folder,filename+".txt");
 	}
     
+    // This method searches the files in the current directory and sub-directory
     public static void searchFileinFolder() {
-		System.out.println("\nSearching the file in the folder "+FileMenu.PATH+"...\n");
+    	System.out.println("SEARCHING A FILE IN THE DIRECTORY AND SUB-DIRECTORIES...");
+    	System.out.println("\nSearching the file in the folder "+FileMenu.PATH+"...\n");
 		File folder = new File(FileMenu.PATH);
 		System.out.println("Enter the file name to be searched...\n");
 		String filename = INPUT.nextLine();
