@@ -27,7 +27,7 @@ public class FileMenu {
 				var inputVal = INPUT.nextLine();
 				
 				// Validate input
-				if(inputVal!=null && !inputVal.isEmpty() && inputVal.matches("^[1-3]*$"))
+				if(inputVal!=null && !inputVal.isEmpty() && inputVal.matches("[1-3]"))
 					choice = Integer.parseInt(inputVal);
 	
 				switch(choice) {
